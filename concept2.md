@@ -1,9 +1,9 @@
 ## floatによる回り込みの問題
 
-CSSでページをスタイルしていくにあたり、HTMLだけではできない `float` による要素の横並びはとても便利です。
+CSSでページをスタイルしていくにあたり、HTMLだけではできない`float`による要素の横並びはとても便利です。
 
-ただし、 `float` には少しだけ注意すべきことがあります。
-赤い要素３の `float` プロパティだけを試しに外してみるとどうなるか見てみましょう。
+ただし、`float`には少しだけ注意すべきことがあります。
+赤い要素３の`float`プロパティだけを試しに外してみるとどうなるか見てみましょう。
 
 ```css
 .element1 {
@@ -12,12 +12,14 @@ CSSでページをスタイルしていくにあたり、HTMLだけではでき�
   height: 150px;
   float: left;
 }
+
 .element2 {
   background-color: blue;
   width: 150px;
   height: 150px;
   float: left;
 }
+
 .element3 {
   background-color: red;
   width: 550px;
@@ -25,107 +27,115 @@ CSSでページをスタイルしていくにあたり、HTMLだけではでき�
 }
 ```
 
-<img src="images/float-sample3.png" />
+![float-sample3.png](./images/float-sample3.png)
 
-先ほどの全ての要素に `float` プロパティを左寄せで指定していた時と比べて、赤い要素の横幅が短くなっています。
+<iframe width="100%" height="300" src="//jsfiddle.net/codegrit_hiro/f2n3b7c8/1/embedded/html,css,result/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+先ほどの全ての要素に`float`プロパティを左寄せで指定していた時と比べて、赤い要素の横幅が短くなっています。
 そして、 `float` プロパティを赤い要素３だけ外しているのに、赤い要素はまだ横並びのままです。
 一体どういうことなのでしょうか？
 
-<img src="images/float-sample4.png" />
+![float-sample4.png](./images/float-sample4.png)
 
-平面で見るとわからないのですが、 `float` プロパティのついた要素は、意味どおり、「浮く」状態になります。
+平面で見るとわからないのですが、`float`プロパティのついた要素は、意味どおり、「浮く」状態になります。
 
 先ほどの状態を平面ではなく、立体でとらえると理解できます。
 
-<img src="images/float-sample5.png" />
+![float-sample5.png](./images/float-sample5.png)
 
-つまり、 `float` プロパティのついた黄色い要素１と青い要素２が浮いていて、その背後に赤い要素３が回り込んでいるということなのです。
+つまり、`float`プロパティのついた黄色い要素１と青い要素２が浮いていて、その背後に赤い要素３が回り込んでいるということなのです。
 
 ブラウザでは、真正面から見ていることになるので、赤い要素３の横幅が縮小し、本来位置すべき黄色い要素１と青い要素２の下に位置しないという現象のように見えるということです。
 
 ## floatによる回り込みを解除する1：clearプロパティ
 
- `float` による要素が背後に回り込む現象を防ぐには、以下のように赤い要素３、つまり `float` プロパティのついていない要素に設定すると解除することができます。
+`float`による要素が背後に回り込む現象を防ぐには、以下のように赤い要素３、つまり`float`プロパティのついていない要素に設定すると解除することができます。
 
 ```css
 clear: both;
 ```
 
-この設定を `clearプロパティ` と言います。
- `clearプロパティ` を指定することで、 `float` プロパティのついた黄色い要素１と青い要素２の背後に回り込まないので、赤い要素３は以下のように本来意図した位置に配置されるようになります。
+この設定を`clearプロパティ`と言います。
+`clearプロパティ`を指定することで、`float`プロパティのついた黄色い要素１と青い要素２の背後に回り込まないので、赤い要３は以下のように本来意図した位置に配置されるようになります。
+`clear`プロパティはほとんどの場合が`both`が値で問題ないです。
 
- `clear` プロパティはほとんどの場合が `both` が値で問題ないです。
-
-
- ```css
- .element1 {
+```css
+.element1 {
   background-color: yellow;
   width: 150px;
   height: 150px;
   float: left;
- }
- .element2 {
+}
+
+.element2 {
   background-color: blue;
   width: 150px;
   height: 150px;
   float: left;
- }
- .element3 {
+}
+
+.element3 {
   background-color: red;
   width: 550px;
   height: 150px;
   clear: both;
- }
- ```
+}
+```
 
-<img src="images/float-sample6.png" />
+![float-sample6.png](./images/float-sample6.png)
+
+<iframe width="100%" height="300" src="//jsfiddle.net/codegrit_hiro/4rwpLqua/2/embedded/html,css,result/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 特定の要素だけ `float` プロパティを解除して他の要素は横並びといった、上記の例のようなパターンはよく使用します。
 
- `float` プロパティと `clear` プロパティはうまく組み合わせて使いこなせるよう、developer toolでClass 2で仕上げたチャレンジの自己紹介ページで練習してみると感覚がつかみやすいです。
+`float` プロパティと `clear` プロパティはうまく組み合わせて使いこなせるよう、developer toolでClass 2で仕上げたチャレンジの自己紹介ページで練習してみると感覚がつかみやすいです。
 
 [サンプルコード](https://github.com/codegrit-jp-students/codegrit-html-css-lesson03-sample-float)
 
 ## floatによる回り込みを解除する2：clearfix
 
-さて、 `clear` プロパティで全て解決しそうに見えますが、実はそう簡単に解決しない場合も中にはあります。
+さて、`clear`プロパティで全て解決しそうに見えますが、実はそう簡単に解決しない場合も中にはあります。
 
-例えば、先ほどの `clear` プロパティで回り込みを解除できた赤い要素３の上部に少し間隔を50pxほどあける指定をしてみましょう。
- `margin-top: 50px;` を赤い要素３にCSSで書き足せば良さそうなことがわかるので、書き足してどうなるか見てみましょう。
+例えば、先ほどの`clear`プロパティで回り込みを解除できた赤い要素３の上部に少し間隔を50pxほどあける指定をしてみましょう。
+`margin-top: 50px;`を赤い要素３にCSSで書き足せば良さそうなことがわかるので、書き足してどうなるか見てみましょう。
 
- ```css
- .element1 {
+```css
+.element1 {
   background-color: yellow;
   width: 150px;
   height: 150px;
   float: left;
- }
- .element2 {
+}
+
+.element2 {
   background-color: blue;
   width: 150px;
   height: 150px;
   float: left;
- }
- .element3 {
+}
+
+.element3 {
   background-color: red;
   width: 550px;
   height: 150px;
   clear: both;
   margin-top: 50px;
- }
- ```
+}
+```
 
-<img src="images/float-sample6.png" />
+![float-sample6.png](./images/float-sample6.png)
+
+<iframe width="100%" height="300" src="//jsfiddle.net/codegrit_hiro/yk3spajc/1/embedded/html,css,result/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 何も変化がなく、赤い要素３の上部がまだ黄色と青の要素と隙間なく配置されたままですね。
 
-実は、`clear` プロパティを与えた要素には `margin-top` が効かないため、このようになってしまうのです。
+実は、`clear`プロパティを与えた要素には`margin-top`が効かないため、このようになってしまうのです。
 
-最近の傾向で、今は `clearfix` で対応する方法が主流になっています。
+最近の傾向で、今は`clearfix`で対応する方法が主流になっています。
 
 ### - clearfixを使用するために必要な知識：カラム
 
-カラムという概念を理解すると、より `clearfix` を使いやすくなるので、ここで紹介していきます。
+カラムという概念を理解すると、より`clearfix`を使いやすくなるので、ここで紹介していきます。
 
 もう少し理解しやすくするために、上記の例にもう一つ要素0という要素をヘッダーとして加えて、簡単なWebページの構造にしてみます。
 
@@ -175,7 +185,7 @@ clear: both;
 }
 ```
 
-<img src="images/column-sample1.png" />
+![column-sample1.png](./images/column-sample1.png)
 
 では、カラムについて説明していきます。
 
@@ -224,22 +234,23 @@ HTMLコードで、メインとサイドバーの要素を囲んだ `div` 要素
 }
 ```
 
-<img src="images/column-sample2.png" />
+![column-sample2.png](./images/column-sample2.png)
 
-きちんと `margin-top` が有効になっていることも確認できますね。
+<iframe width="100%" height="300" src="//jsfiddle.net/codegrit_hiro/wLd46jr0/4/embedded/html,css,result/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
-`.clearfix` に `::after` という`疑似要素`を使うことで、 `class="clearfix"` のかかる要素の終了タグ直後をセレクタとして選択できます。
-この場合では、メインとサイドバー要素を囲んでいる `div` 要素のすぐ直後、つまりフッターの上です。
+きちんと`margin-top`が有効になっていることも確認できますね。
+
+`.clearfix`に`::after`という`疑似要素`を使うことで、`class="clearfix"`のかかる要素の終了タグ直後をセレクタとして選択できます。この場合では、メインとサイドバー要素を囲んでいる`div`要素のすぐ直後、つまりフッターの上です。
 
 ```css
 .clearfix::after {
-  content: "";/* ここがclearfix::afterに該当する箇所。 */
+  content: ""; /* ここがclearfix::afterに該当する箇所。 */
   display: block;
   clear: both;
 }
 ```
 
-<img src="images/column-sample3.png" />
+![column-sample3.png](./images/column-sample3.png)
 
 contentプロパティには、値としてテキスト（文字列）を入れるのは推奨されていないので注意しましょう。
 

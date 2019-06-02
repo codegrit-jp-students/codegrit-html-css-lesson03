@@ -64,7 +64,9 @@ Webページをよく平面として捉えがちですが、 `float` プロパ�
 }
 ```
 
-<img src="images/z-index-sample1.png" />
+![z-index-sample1.png](./images/z-index-sample1.png)
+
+<iframe width="100%" height="300" src="//jsfiddle.net/codegrit_hiro/yd4fu30o/embedded/html,css,result/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 上記のように、 `z-index` を設定していなくても、後に書かれた要素はどんどん手前に重なっていくので、要素１が一番重なりの下になります。
 
@@ -112,7 +114,9 @@ Webページをよく平面として捉えがちですが、 `float` プロパ�
 }
 ```
 
-<img src="images/z-index-sample2.png" />
+![z-index-sample2.png](./images/z-index-sample2.png)
+
+<iframe width="100%" height="300" src="//jsfiddle.net/codegrit_hiro/1k54qrey/embedded/html,css,result/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 重なりの順番が変わり、青い要素２が全ての重なりの中で一番上に重なっていますね。
 これは `z-index` の値がもっとも大きな整数の値に設定され、 `position` プロパティが `static` 以外の値になっているためです。
@@ -174,7 +178,9 @@ h2 {
 }
 ```
 
-<img src="images/z-index-sample3.png" />
+![z-index-sample3.png](./images/z-index-sample3.png)
+
+<iframe width="100%" height="300" src="//jsfiddle.net/codegrit_hiro/cyavh0wz/2/embedded/html,css,result/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 意図した通り、文字が一番重なりの上になりました。
 一つ注意して欲しいのが、 `position` の値はいつも `absolute` で良いとは限りません。
